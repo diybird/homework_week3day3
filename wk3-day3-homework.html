@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Calculator</title>
+<style>
+    div {
+        margin: 40px;
+    }
+</style>
+</head>
+<body>
+
+<div>
+  <label>Square this number:
+    <input type="number" id="square-input" size="2">
+  </label>
+  <button id="square-button">Calculate</button>
+</div>
+
+<div>
+  <label>Half this number:
+    <input type="number" id="half-input" size="2">
+  </label>
+  <button id="half-button">Calculate</button>
+</div>
+
+<div>
+  <label>
+    Fraction:
+    <input type="number" id="percent1-input" size="2">
+  </label>
+  <label>
+    Whole:
+    <input type="number" id="percent2-input" size="2">
+  </label>
+  <button id="percent-button">Calculate</button>
+</div>
+
+<div>
+  <label>
+    Integer:
+    <input type="number" id="int-input" size="2">
+  </label>
+  <button id="int-button">Calculate</button>
+</div>
+
+<div>
+  <label>Calculate area of circle with radius:
+    <input type="number" id="area-input" size="2">
+  </label>
+  <button id="area-button">Calculate</button> 
+</div>
+
+<div id="solution"></div>
+
+
+<script>
+
+  function squareNumber(num) {
+      var squaredNumber = num * num;
+      document.getElementById("solution").innerHTML = 'The result of squaring the number ' + num + ' is ' + squaredNumber;
+  }
+      
+  var squareButton = document.getElementById("square-button");
+  squareButton.addEventListener("click", function() {
+    var num = document.getElementById("square-input").value;
+    squareNumber(num);
+  });
+
+  /* Preview this page on the browser and test the first calculation */
+
+  function halfNumber(num) {
+    var half = num / 2;
+    document.getElementById("solution").innerHTML = 'Half of ' + num + ' is ' + half;
+}
+
+var halfButton = document.getElementById("half-button");
+halfButton.addEventListener("click", function() {
+    var num = document.getElementById("half-input").value;
+    halfNumber(num);
+});
+
+function calculateFraction() {
+    var percent1 = parseFloat(document.getElementById("percent1-input").value);
+    var percent2 = parseFloat(document.getElementById("percent2-input").value);
+    
+    if (!isNaN(percent1) && !isNaN(percent2) && percent2 !== 0) {
+        var fraction = (percent1 / percent2) * 100;
+        document.getElementById("solution").innerHTML = percent1 + ' is ' + fraction + '% of ' + percent2;
+    } else {
+        document.getElementById("solution").innerHTML = 'Invalid input. Please enter valid numbers.';
+    }
+}
+
+var percentButton = document.getElementById("percent-button");
+percentButton.addEventListener("click", calculateFraction);
+
+function findInteger(num) {
+    var integer = Math.floor(num);
+    document.getElementById("solution").innerHTML = 'The largest integer less than or equal to ' + num + ' is ' + integer;
+}
+
+var intButton = document.getElementById("int-button");
+intButton.addEventListener("click", function() {
+    var num = document.getElementById("int-input").value;
+    findInteger(num);
+});
+
+function calculateCircleArea(radius) {
+    var area = Math.PI * radius * radius;
+    document.getElementById("solution").innerHTML = 'The area of a circle with a radius of ' + radius + ' is ' + area.toFixed(2);
+}
+
+var areaButton = document.getElementById("area-button");
+areaButton.addEventListener("click", function() {
+    var radius = document.getElementById("area-input").value;
+    calculateCircleArea(radius);
+});
+
+
+
+
+</script>
+</body>
+</html>
